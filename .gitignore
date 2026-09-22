@@ -9,3 +9,4 @@ build/
 .claude/
 .cursor/
 .devin/
+backend/generated/
