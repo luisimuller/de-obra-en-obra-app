@@ -6,3 +6,82 @@ generator client {
 datasource db {
   provider = "sqlite"
 }
+
+model Usuario {
+  id           Int      @id @default(autoincrement())
+  nombre       String
+  correo       String   @unique
+  passwordHash String
+  telefono     String?
+  rol          String   @default("comprador")
+  creadoEn     DateTime @default(now())
+
+  publicaciones       Publicacion[]
+  busquedasGuardadas  BusquedaGuardada[]
+
+  @@map("usuarios")
+}
+
+model Categoria {
+  id               Int      @id @default(autoincrement())
+  nombre           String
+  categoriaPadreId Int?
+  categoriaPadre   Categoria?  @relation("Subcategorias", fields: [categoriaPadreId], references: [id])
+  subcategorias    Categoria[] @relation("Subcategorias")
+
+  publicaciones      Publicacion[]
+  busquedasGuardadas BusquedaGuardada[]
+
+  @@map("categorias")
+}
+
+model Publicacion {
+  id               Int      @id @default(autoincrement())
+  vendedorId       Int
+  categoriaId      Int
+  titulo           String
+  descripcion      String
+  cantidad         Float
+  unidad           String
+  precio           Float
+  latitud          Float
+  longitud         Float
+  estado           String   @default("activa")
+  fechaVencimiento DateTime
+  creadoEn         DateTime @default(now())
+
+  vendedor  Usuario           @relation(fields: [vendedorId], references: [id])
+  categoria Categoria         @relation(fields: [categoriaId], references: [id])
+  fotos     PublicacionFoto[]
+
+  @@map("publicaciones")
+}
+
+model PublicacionFoto {
+  id            Int    @id @default(autoincrement())
+  publicacionId Int
+  url           String
+  orden         Int    @default(0)
+
+  publicacion Publicacion @relation(fields: [publicacionId], references: [id])
+
+  @@map("publicacion_fotos")
+}
+
+model BusquedaGuardada {
+  id            Int      @id @default(autoincrement())
+  compradorId   Int
+  categoriaId   Int
+  palabrasClave String?
+  latitud       Float
+  longitud      Float
+  radioKm       Float
+  precioMaximo  Float?
+  activa        Boolean  @default(true)
+  creadoEn      DateTime @default(now())
+
+  comprador Usuario   @relation(fields: [compradorId], references: [id])
+  categoria Categoria @relation(fields: [categoriaId], references: [id])
+
+  @@map("busquedas_guardadas")
+}
