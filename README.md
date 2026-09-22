@@ -16,3 +16,23 @@ Proyecto fullstack de portfolio. En construcción.
 
 \- Frontend: React, Vite
 
+
+
+## Cómo levantar el proyecto
+
+### Backend
+
+1. `cd backend`
+2. `npm install`
+3. `npx prisma migrate dev` — crea la base de datos SQLite local con las tablas ya definidas (no trae datos, cada quien arranca con la base vacía).
+
+### Base de datos
+
+El proyecto usa SQLite, así que no hace falta instalar ningún motor de base de datos aparte: el archivo vive dentro de `backend/prisma/dev.db` y se genera solo con el paso anterior.
+
+Para ver y editar los datos visualmente con Prisma Studio:
+cd backend
+npx prisma studio --url "file://./prisma/dev.db"
+
+
+Nota: con Prisma 7, `npx prisma studio` sin el flag `--url` puede fallar con el error `Prisma Studio is not supported for the "..." protocol`. Si eso pasa, usar el comando con `--url` de arriba.
