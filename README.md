@@ -36,3 +36,6 @@ npx prisma studio --url "file://./prisma/dev.db"
 
 
 Nota: con Prisma 7, `npx prisma studio` sin el flag `--url` puede fallar con el error `Prisma Studio is not supported for the "..." protocol`. Si eso pasa, usar el comando con `--url` de arriba.
+
+4. `npm install` instala también el driver adapter de SQLite (`@prisma/adapter-better-sqlite3`), necesario porque Prisma 7 requiere pasarle explícitamente un adaptador de conexión al `PrismaClient` (ya no alcanza con la URL en `.env`).
+5. `node index.js` levanta el servidor en `http://localhost:3000`.

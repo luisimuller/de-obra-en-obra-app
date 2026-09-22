@@ -16,17 +16,17 @@ model Usuario {
   rol          String   @default("comprador")
   creadoEn     DateTime @default(now())
 
-  publicaciones       Publicacion[]
-  busquedasGuardadas  BusquedaGuardada[]
-  conversacionesComoComprador Conversacion[] @relation("ConversacionesComoComprador")
-  conversacionesComoVendedor  Conversacion[] @relation("ConversacionesComoVendedor")
+  publicaciones               Publicacion[]
+  busquedasGuardadas          BusquedaGuardada[]
+  conversacionesComoComprador Conversacion[]     @relation("ConversacionesComoComprador")
+  conversacionesComoVendedor  Conversacion[]     @relation("ConversacionesComoVendedor")
   mensajes                    Mensaje[]
 
   @@map("usuarios")
 }
 
 model Categoria {
-  id               Int      @id @default(autoincrement())
+  id               Int         @id @default(autoincrement())
   nombre           String
   categoriaPadreId Int?
   categoriaPadre   Categoria?  @relation("Subcategorias", fields: [categoriaPadreId], references: [id])
@@ -53,12 +53,12 @@ model Publicacion {
   fechaVencimiento DateTime
   creadoEn         DateTime @default(now())
 
-  vendedor  Usuario           @relation(fields: [vendedorId], references: [id])
-  categoria Categoria         @relation(fields: [categoriaId], references: [id])
-  fotos     PublicacionFoto[]
-  alertas       Alerta[]
+  vendedor       Usuario           @relation(fields: [vendedorId], references: [id])
+  categoria      Categoria         @relation(fields: [categoriaId], references: [id])
+  fotos          PublicacionFoto[]
+  alertas        Alerta[]
   conversaciones Conversacion[]
-  reportes      Reporte[]
+  reportes       Reporte[]
 
   @@map("publicaciones")
 }
@@ -88,7 +88,7 @@ model BusquedaGuardada {
 
   comprador Usuario   @relation(fields: [compradorId], references: [id])
   categoria Categoria @relation(fields: [categoriaId], references: [id])
-  alertas Alerta[]
+  alertas   Alerta[]
 
   @@map("busquedas_guardadas")
 }
@@ -107,12 +107,12 @@ model Alerta {
 }
 
 model Conversacion {
-  id                Int      @id @default(autoincrement())
-  publicacionId     Int
-  compradorId       Int
-  vendedorId        Int
-  telefonoRevelado  Boolean  @default(false)
-  creadoEn          DateTime @default(now())
+  id               Int      @id @default(autoincrement())
+  publicacionId    Int
+  compradorId      Int
+  vendedorId       Int
+  telefonoRevelado Boolean  @default(false)
+  creadoEn         DateTime @default(now())
 
   publicacion Publicacion @relation(fields: [publicacionId], references: [id])
   comprador   Usuario     @relation("ConversacionesComoComprador", fields: [compradorId], references: [id])
@@ -123,11 +123,11 @@ model Conversacion {
 }
 
 model Mensaje {
-  id              Int      @id @default(autoincrement())
-  conversacionId  Int
-  emisorId        Int
-  texto           String
-  creadoEn        DateTime @default(now())
+  id             Int      @id @default(autoincrement())
+  conversacionId Int
+  emisorId       Int
+  texto          String
+  creadoEn       DateTime @default(now())
 
   conversacion Conversacion @relation(fields: [conversacionId], references: [id])
   emisor       Usuario      @relation(fields: [emisorId], references: [id])
