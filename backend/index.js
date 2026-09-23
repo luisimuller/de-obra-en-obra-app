@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const prisma = require("./prisma-client");
 const usuariosRouter = require("./routes/usuarios");
-
+const categoriasRouter = require("./routes/categorias");
 const app = express();
 const PORT = 3000;
 
@@ -14,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/usuarios",usuariosRouter);
+app.use("/categorias",categoriasRouter);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
