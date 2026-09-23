@@ -12,6 +12,25 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+
+    const categoria = await prisma.categoria.findUnique({
+      where: { id },
+    });
+
+    if (!categoria) {
+      return res.status(404).json({ error: "Categoría no encontrada" });
+    }
+
+    res.json(categoria);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener la categoría" });
+  }
+});
+
 router.post("/", async (req, res) => {
     try {
         const { nombre, categoriaPadreId } = req.body;
@@ -31,5 +50,6 @@ router.post("/", async (req, res) => {
         res.status(500).json({ error: "Error al crear la categoría" });
     }
 });
+
 
 module.exports = router;
