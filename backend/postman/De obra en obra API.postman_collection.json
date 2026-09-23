@@ -126,6 +126,34 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Crear publicacin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"vendedorId\": 1,\r\n  \"categoriaId\": 1,\r\n  \"titulo\": \"Ladrillos huecos sobrantes\",\r\n  \"descripcion\": \"Sobraron de una obra, buen estado\",\r\n  \"cantidad\": 200,\r\n  \"unidad\": \"unidades\",\r\n  \"precio\": 15000,\r\n  \"latitud\": -31.6333,\r\n  \"longitud\": -60.7000,\r\n  \"fechaVencimiento\": \"2026-12-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/publicaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"publicaciones"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
