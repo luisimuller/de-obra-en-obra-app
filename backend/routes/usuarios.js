@@ -12,6 +12,31 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const { nombre, correo, passwordHash, telefono, rol } = req.body;
+
+    if (!nombre || !correo || !passwordHash) {
+      return res.status(400).json({ error: "Nombre, correo y contraseña son obligatorios" });
+    }
+
+    const nuevoUsuario = await prisma.usuario.create({
+      data: {
+        nombre,
+        correo,
+        passwordHash,
+        telefono: telefono || null,
+        rol: rol || "comprador",
+      },
+    });
+
+    res.status(201).json(nuevoUsuario);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al crear el usuario" });
+  }
+});
+
 module.exports = router;
 
 
