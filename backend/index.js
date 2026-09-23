@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const prisma = require("./prisma-client");
+const usuariosRouter = require("./routes/usuarios");
 
 const app = express();
 const PORT = 3000;
@@ -12,10 +13,7 @@ app.get("/", (req, res) => {
   res.json({ mensaje: "API de De Obra en Obra funcionando" });
 });
 
-app.get("/usuarios", async (req, res) => {
-  const usuarios = await prisma.usuario.findMany();
-  res.json(usuarios);
-});
+app.use("/usuarios",usuariosRouter);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
