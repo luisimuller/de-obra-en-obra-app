@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const prisma = require("../prisma-client");
+const bcrypt = require("bcryptjs");
 
 router.get("/", async (req, res) => {
     try {
@@ -20,13 +21,22 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Nombre, correo y contraseña son obligatorios" });
     }
 
+    const hashEncriptado = await bcrypt.hash(passwordHash, 10);
+
     const nuevoUsuario = await prisma.usuario.create({
       data: {
         nombre,
         correo,
-        passwordHash,
+        passwordHash: hashEncriptado,
         telefono: telefono || null,
         rol: rol || "comprador",
+      },
+      select: {
+        id: true,
+        nombre: true,
+        correo: true,
+        telefono: true,
+        rol: true,
       },
     });
 
