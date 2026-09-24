@@ -45,4 +45,43 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const publicaciones = await prisma.publicacion.findMany({
+      include: {
+        vendedor: true,
+        categoria: true,
+      },
+    });
+    res.json(publicaciones);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener publicaciones" });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+
+    const publicacion = await prisma.publicacion.findUnique({
+      where: { id },
+      include: {
+        vendedor: true,
+        categoria: true,
+        fotos: true,
+      },
+    });
+
+    if (!publicacion) {
+      return res.status(404).json({ error: "Publicación no encontrada" });
+    }
+
+    res.json(publicacion);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener la publicación" });
+  }
+});
+
 module.exports = router;
