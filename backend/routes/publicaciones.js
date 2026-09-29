@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const prisma = require("../prisma-client");
+const verificarToken = require("../middleware/auth");
 
-router.post("/", async (req, res) => {
+
+router.post("/", verificarToken, async (req, res) => {
   try {
+    const vendedorId = req.usuario.id;
+
     const {
-      vendedorId,
       categoriaId,
       titulo,
       descripcion,
@@ -17,9 +20,9 @@ router.post("/", async (req, res) => {
       fechaVencimiento,
     } = req.body;
 
-    if (!vendedorId || !categoriaId || !titulo || !precio || !latitud || !longitud) {
+    if (!categoriaId || !titulo || !precio || !latitud || !longitud) {
       return res.status(400).json({
-        error: "vendedorId, categoriaId, titulo, precio, latitud y longitud son obligatorios",
+        error: "categoriaId, titulo, precio, latitud y longitud son obligatorios",
       });
     }
 
