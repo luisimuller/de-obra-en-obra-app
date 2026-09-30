@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiFetch from "../services/api";
+import { iconoPorCategoria } from "../components/Iconos";
 import "./Publicaciones.css";
 
 function Publicaciones() {
@@ -30,7 +31,7 @@ function Publicaciones() {
     <div className="tablon">
       <header className="tablon__header">
         <div>
-          <span className="tablon__eyebrow">De Obra en Obra</span>
+          <span className="tablon__eyebrow">N.° 02 — Tablón</span>
           <h1>Materiales disponibles</h1>
         </div>
         <button onClick={cerrarSesion}>Cerrar sesión</button>
@@ -46,6 +47,9 @@ function Publicaciones() {
         {publicaciones.map((publicacion) => (
           <li key={publicacion.id} className="aviso">
             <div className="aviso__franja" />
+            <div className="aviso__icono">
+              {iconoPorCategoria(publicacion.categoria.nombre)}
+            </div>
             <div className="aviso__contenido">
               <div className="aviso__linea-superior">
                 <h2>{publicacion.titulo}</h2>
@@ -55,10 +59,8 @@ function Publicaciones() {
               </div>
               <p className="aviso__descripcion">{publicacion.descripcion}</p>
               <div className="aviso__meta">
-                <span>{publicacion.categoria.nombre}</span>
-                <span>·</span>
+                <span>[ {publicacion.categoria.nombre} ]</span>
                 <span>{publicacion.cantidad} {publicacion.unidad}</span>
-                <span>·</span>
                 <span>Publica: {publicacion.vendedor.nombre}</span>
               </div>
             </div>
