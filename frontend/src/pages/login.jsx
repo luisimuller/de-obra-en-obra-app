@@ -1,7 +1,10 @@
 import { useState } from "react";
 import apiFetch from "../services/api";
+import { useNavigate } from "react-router-dom";
+
 
 function Login() {
+  const navigate = useNavigate();
   const [correo, setCorreo] = useState("");
   const [passwordHash, setPasswordHash] = useState("");
   const [error, setError] = useState("");
@@ -19,7 +22,7 @@ function Login() {
       });
 
       localStorage.setItem("token", datos.token);
-      console.log("Login exitoso:", datos.usuario);
+      navigate("/publicaciones");
     } catch (err) {
       setError(err.message);
     } finally {
