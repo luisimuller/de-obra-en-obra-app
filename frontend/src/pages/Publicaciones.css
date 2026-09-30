@@ -1,0 +1,89 @@
+.tablon {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.tablon__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 3px solid var(--color-tinta);
+  padding-bottom: 1rem;
+  margin-bottom: 1.75rem;
+  gap: 1rem;
+}
+
+.tablon__eyebrow {
+  display: block;
+  color: var(--color-acento);
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.tablon__header h1 {
+  font-size: 1.9rem;
+}
+
+.tablon__vacio {
+  color: var(--color-tinta-suave);
+  font-style: italic;
+}
+
+.tablon__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.aviso {
+  display: flex;
+  background: var(--color-superficie);
+  border: 2px solid var(--color-tinta);
+}
+
+.aviso__franja {
+  width: 0.6rem;
+  background: var(--color-acento);
+  flex-shrink: 0;
+}
+
+.aviso__contenido {
+  padding: 1rem 1.25rem;
+  flex: 1;
+}
+
+.aviso__linea-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.aviso__linea-superior h2 {
+  font-size: 1.1rem;
+  text-transform: none;
+}
+
+.aviso__precio {
+  font-family: var(--fuente-display);
+  color: var(--color-secundario);
+  white-space: nowrap;
+}
+
+.aviso__descripcion {
+  color: var(--color-tinta-suave);
+  margin: 0.4rem 0 0.6rem;
+}
+
+.aviso__meta {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-tinta-suave);
+  flex-wrap: wrap;
+}

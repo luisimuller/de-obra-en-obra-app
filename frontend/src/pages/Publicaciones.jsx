@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiFetch from "../services/api";
+import "./Publicaciones.css";
 
 function Publicaciones() {
   const [publicaciones, setPublicaciones] = useState([]);
@@ -26,15 +27,41 @@ function Publicaciones() {
   }
 
   return (
-    <div>
-      <h1>Publicaciones</h1>
-      <button onClick={cerrarSesion}>Cerrar sesión</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <ul>
+    <div className="tablon">
+      <header className="tablon__header">
+        <div>
+          <span className="tablon__eyebrow">De Obra en Obra</span>
+          <h1>Materiales disponibles</h1>
+        </div>
+        <button onClick={cerrarSesion}>Cerrar sesión</button>
+      </header>
+
+      {error && <p className="mensaje-error">{error}</p>}
+
+      {!error && publicaciones.length === 0 && (
+        <p className="tablon__vacio">Todavía no hay publicaciones cargadas.</p>
+      )}
+
+      <ul className="tablon__lista">
         {publicaciones.map((publicacion) => (
-          <li key={publicacion.id}>
-            {publicacion.titulo} — ${publicacion.precio} — vendedor:{" "}
-            {publicacion.vendedor.nombre}
+          <li key={publicacion.id} className="aviso">
+            <div className="aviso__franja" />
+            <div className="aviso__contenido">
+              <div className="aviso__linea-superior">
+                <h2>{publicacion.titulo}</h2>
+                <span className="aviso__precio">
+                  ${publicacion.precio.toLocaleString("es-AR")}
+                </span>
+              </div>
+              <p className="aviso__descripcion">{publicacion.descripcion}</p>
+              <div className="aviso__meta">
+                <span>{publicacion.categoria.nombre}</span>
+                <span>·</span>
+                <span>{publicacion.cantidad} {publicacion.unidad}</span>
+                <span>·</span>
+                <span>Publica: {publicacion.vendedor.nombre}</span>
+              </div>
+            </div>
           </li>
         ))}
       </ul>

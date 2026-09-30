@@ -1,0 +1,132 @@
+.login-split {
+  min-height: 100vh;
+  display: flex;
+}
+
+.login-hero {
+  position: relative;
+  flex: 1.1;
+  background: var(--color-tinta);
+  color: var(--color-fondo);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.login-hero__grilla {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(46, 74, 99, 0.5) 0, rgba(46, 74, 99, 0.5) 1px, transparent 1px, transparent 48px),
+    repeating-linear-gradient(90deg, rgba(46, 74, 99, 0.5) 0, rgba(46, 74, 99, 0.5) 1px, transparent 1px, transparent 48px);
+}
+
+.login-hero__franja {
+  position: absolute;
+  top: -20%;
+  right: -15%;
+  width: 45%;
+  height: 140%;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-acento),
+    var(--color-acento) 22px,
+    var(--color-acento-oscuro) 22px,
+    var(--color-acento-oscuro) 44px
+  );
+  opacity: 0.9;
+}
+
+.login-hero__contenido {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 3.5rem;
+  max-width: 30rem;
+}
+
+.login-hero__sello {
+  display: inline-block;
+  border: 2px solid var(--color-acento);
+  color: var(--color-acento);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.login-hero__titulo {
+  font-size: 4rem;
+  line-height: 0.95;
+  margin-bottom: 1.25rem;
+}
+
+.login-hero__bajada {
+  font-size: 1.05rem;
+  color: #C9C2B4;
+  max-width: 24rem;
+}
+
+.login-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--color-fondo);
+}
+
+.orden-trabajo {
+  width: 100%;
+  max-width: 24rem;
+}
+
+.orden-trabajo h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.1rem;
+}
+
+.campo label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-tinta-suave);
+}
+
+.orden-trabajo button {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.mensaje-error {
+  border-left: 4px solid var(--color-acento);
+  background: rgba(210, 84, 14, 0.1);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+@media (max-width: 780px) {
+  .login-split {
+    flex-direction: column;
+  }
+
+  .login-hero {
+    min-height: 14rem;
+    flex: none;
+  }
+
+  .login-hero__titulo {
+    font-size: 2.75rem;
+  }
+
+  .login-hero__contenido {
+    padding: 2rem;
+  }
+}
