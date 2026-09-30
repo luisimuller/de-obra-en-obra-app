@@ -136,7 +136,7 @@
     top: 2rem;
     left: 0;
     right: 0;
-    background: #FFC400;
+    background: var(--color-acento);
     overflow: hidden;
     white-space: nowrap;
     padding: 0.9rem 0;
@@ -152,8 +152,8 @@
     background: repeating-linear-gradient(45deg,
             #17140F 0,
             #17140F 12px,
-            #FFC400 12px,
-            #FFC400 24px);
+            var(--color-acento-oscuro) 12px,
+            var(--color-acento-oscuro) 24px);
 }
 
 .login-panel__cinta::before {
@@ -173,7 +173,7 @@
 .login-panel__cinta span {
   display: inline-block;
   padding: 0 1rem;
-  color: #17140F;
+  color: #ffff;
   font-family: var(--fuente-display);
   font-size: 0.95rem;
   letter-spacing: 0.08em;

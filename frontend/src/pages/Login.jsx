@@ -44,7 +44,7 @@ function Login() {
             en Obra
           </h1>
           <p className="login-hero__bajada">
-            <strong>Lo que a vos te sobra, a otro le falta.</strong> <br /> Publicá, buscá y
+            <strong>Lo que sobra en una obra, falta en otra.</strong> <br /> Publicá, buscá y
             encontrá materiales cerca tuyo.
           </p>
           <ul className="login-hero__materiales">
