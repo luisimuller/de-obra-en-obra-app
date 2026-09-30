@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiFetch from "../services/api";
+import { IconoLadrillo, IconoCeramico, IconoAbertura, IconoMadera } from "../components/Iconos";
 import "./Login.css";
 
 function Login() {
@@ -43,13 +44,35 @@ function Login() {
             en Obra
           </h1>
           <p className="login-hero__bajada">
-            Lo que sobra en una obra, sirve en la próxima. Publicá, buscá y
+            <strong>Lo que a vos te sobra, a otro le falta.</strong> <br /> Publicá, buscá y
             encontrá materiales cerca tuyo.
           </p>
+          <ul className="login-hero__materiales">
+            <li>
+              <IconoLadrillo /> Ladrillos
+            </li>
+            <li>
+              <IconoCeramico /> Cerámicos
+            </li>
+            <li>
+              <IconoAbertura /> Aberturas
+            </li>
+            <li>
+              <IconoMadera /> Maderas
+            </li>
+            <li className="login-hero__mas">+ Más</li>
+
+          </ul>
         </div>
       </div>
 
       <div className="login-panel">
+        <div className="login-panel__cinta">
+          <div className="login-panel__cinta-texto">
+            <span>VENDÉ LO QUE TE SOBRÓ — ENCONTRÁ LO QUE TE FALTA — </span>
+            <span>VENDÉ LO QUE TE SOBRÓ — ENCONTRÁ LO QUE TE FALTA — </span>
+          </div>
+        </div>
         <div className="orden-trabajo">
           <h2>Iniciar sesión</h2>
           <form onSubmit={manejarSubmit} autoComplete="off">

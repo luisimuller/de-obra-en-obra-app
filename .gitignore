@@ -10,3 +10,4 @@ build/
 .cursor/
 .devin/
 backend/generated/
+dev-dist/
