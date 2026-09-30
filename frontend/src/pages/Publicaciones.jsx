@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import apiFetch from "../services/api";
 import { iconoPorCategoria } from "../components/Iconos";
 import "./Publicaciones.css";
+import { useNavigate, Link } from "react-router-dom";
+
 
 function Publicaciones() {
   const [publicaciones, setPublicaciones] = useState([]);
@@ -34,6 +35,7 @@ function Publicaciones() {
           <span className="tablon__eyebrow">N.° 02 — Tablón</span>
           <h1>Materiales disponibles</h1>
         </div>
+        <Link to="/publicaciones/nueva" className="tablon__nuevo">+ Publicar material</Link>
         <button onClick={cerrarSesion}>Cerrar sesión</button>
       </header>
 
@@ -60,7 +62,10 @@ function Publicaciones() {
               <p className="aviso__descripcion">{publicacion.descripcion}</p>
               <div className="aviso__meta">
                 <span>[ {publicacion.categoria.nombre} ]</span>
-                <span>{publicacion.cantidad} {publicacion.unidad}</span>
+                <span>
+                  {publicacion.cantidad}
+                  {publicacion.unidad ? ` ${publicacion.unidad}` : ""}
+                </span>
                 <span>Publica: {publicacion.vendedor.nombre}</span>
               </div>
             </div>

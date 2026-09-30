@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Publicaciones from "./pages/Publicaciones";
 import RutaPrivada from "./components/RutaPrivada";
+import NuevaPublicacion from "./pages/NuevaPublicacion";
 
 function App() {
   return (
@@ -17,6 +18,14 @@ function App() {
           }
         />
         <Route path="/" element={<Navigate to="/login" />} />
+        <Route
+          path="/publicaciones/nueva"
+          element={
+            <RutaPrivada>
+              <NuevaPublicacion />
+            </RutaPrivada>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

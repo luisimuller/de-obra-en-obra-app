@@ -114,3 +114,19 @@
   color: var(--color-tinta-suave);
   flex-wrap: wrap;
 }
+
+.tablon__nuevo {
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid var(--color-tinta);
+  background: var(--color-acento);
+  color: var(--color-superficie);
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  margin-right: 0.75rem;
+}
+
+.tablon__nuevo:hover {
+  background: var(--color-acento-oscuro);
+}

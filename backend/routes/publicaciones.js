@@ -37,7 +37,9 @@ router.post("/", verificarToken, async (req, res) => {
         precio: Number(precio),
         latitud: Number(latitud),
         longitud: Number(longitud),
-        fechaVencimiento: new Date(fechaVencimiento),
+        fechaVencimiento: fechaVencimiento
+          ? new Date(fechaVencimiento)
+          : new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       },
     });
 
