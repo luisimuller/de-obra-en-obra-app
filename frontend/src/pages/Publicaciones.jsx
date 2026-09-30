@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import apiFetch from "../services/api";
-
 
 function Publicaciones() {
   const [publicaciones, setPublicaciones] = useState([]);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function cargarPublicaciones() {
@@ -19,9 +20,15 @@ function Publicaciones() {
     cargarPublicaciones();
   }, []);
 
+  function cerrarSesion() {
+    localStorage.removeItem("token");
+    navigate("/login");
+  }
+
   return (
     <div>
       <h1>Publicaciones</h1>
+      <button onClick={cerrarSesion}>Cerrar sesión</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <ul>
         {publicaciones.map((publicacion) => (
