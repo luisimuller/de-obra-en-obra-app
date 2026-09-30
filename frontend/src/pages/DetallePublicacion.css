@@ -1,0 +1,147 @@
+.detalle {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+}
+
+.detalle__volver {
+    display: inline-block;
+    color: var(--color-tinta-suave);
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.detalle__volver:hover {
+    color: var(--color-acento);
+}
+
+.detalle__tarjeta {
+    display: flex;
+    background: var(--color-superficie);
+    border: 3px solid var(--color-tinta);
+    box-shadow: 10px 10px 0 var(--color-secundario);
+}
+
+.detalle__galeria {
+    width: 22rem;
+    flex-shrink: 0;
+    border-right: 3px solid var(--color-tinta);
+    display: flex;
+    flex-direction: column;
+}
+
+.detalle__foto-principal {
+    width: 100%;
+    height: 22rem;
+    object-fit: contain;
+    background: var(--color-fondo);
+    display: block;
+}
+
+.detalle__miniaturas {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.detalle__miniaturas img {
+    width: 3.2rem;
+    height: 3.2rem;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.6;
+}
+
+.detalle__miniaturas img.activa {
+    border-color: var(--color-acento);
+    opacity: 1;
+}
+
+.detalle__sin-foto {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--color-tinta-suave);
+    min-height: 18rem;
+}
+
+.detalle__sin-foto svg {
+    width: 48px;
+    height: 48px;
+}
+
+.detalle__info {
+    padding: 2rem;
+    flex: 1;
+}
+
+.detalle__categoria {
+    color: var(--color-acento);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.detalle__info h1 {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+}
+
+.detalle__precio {
+    font-family: var(--fuente-display);
+    color: var(--color-secundario);
+    font-size: 1.75rem;
+    margin: 0 0 1rem;
+}
+
+.detalle__descripcion {
+    color: var(--color-tinta-suave);
+    margin-bottom: 1.25rem;
+}
+
+.detalle__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    color: var(--color-tinta-suave);
+    margin-bottom: 1.5rem;
+    border-top: 2px solid var(--color-borde);
+    padding-top: 1rem;
+}
+
+.detalle__contactar {
+    display: inline-block;
+    background: #25D366;
+    color: white;
+    font-weight: 700;
+    padding: 0.85rem 1.5rem;
+    text-decoration: none;
+    border: 2px solid var(--color-tinta);
+}
+
+.detalle__contactar:hover {
+    background: #1DA851;
+}
+
+.detalle__sin-telefono {
+    color: var(--color-tinta-suave);
+    font-style: italic;
+}
+
+@media (max-width: 700px) {
+    .detalle__tarjeta {
+        flex-direction: column;
+    }
+
+    .detalle__galeria {
+        width: 100%;
+        border-right: none;
+        border-bottom: 3px solid var(--color-tinta);
+    }
+}

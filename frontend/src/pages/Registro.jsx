@@ -1,12 +1,14 @@
 import { useState } from "react";
-import apiFetch from "../services/api";
-import { IconoLadrillo, IconoCeramico, IconoAbertura, IconoMadera } from "../components/Iconos";
-import "./Login.css";
 import { useNavigate, Link } from "react-router-dom";
+import apiFetch from "../services/api";
+import "./Login.css";
 
-function Login() {
+function Registro() {
+  const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
   const [passwordHash, setPasswordHash] = useState("");
+  const [confirmarPassword, setConfirmarPassword] = useState("");
+  const [telefono, setTelefono] = useState("");
   const [error, setError] = useState("");
   const [cargando, setCargando] = useState(false);
   const navigate = useNavigate();
@@ -14,16 +16,21 @@ function Login() {
   async function manejarSubmit(evento) {
     evento.preventDefault();
     setError("");
+
+    if (passwordHash !== confirmarPassword) {
+      setError("Las contraseñas no coinciden");
+      return;
+    }
+
     setCargando(true);
 
     try {
-      const datos = await apiFetch("/auth/login", {
+      await apiFetch("/usuarios", {
         method: "POST",
-        body: JSON.stringify({ correo, passwordHash }),
+        body: JSON.stringify({ nombre, correo, passwordHash, telefono }),
       });
 
-      localStorage.setItem("token", datos.token);
-      navigate("/publicaciones");
+      navigate("/login");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -37,32 +44,17 @@ function Login() {
         <div className="login-hero__grilla" />
         <div className="login-hero__franja" />
         <div className="login-hero__contenido">
-          <span className="login-hero__sello">N.° 01 — ACCESO</span>
+          <span className="login-hero__sello">N.° 00 — Registro</span>
           <h1 className="login-hero__titulo">
             De Obra
             <br />
             en Obra
           </h1>
           <p className="login-hero__bajada">
-            <strong>Lo que sobra en una obra, falta en otra.</strong> <br /> Publicá, buscá y
-            encontrá materiales cerca tuyo.
+            <strong>Lo que sobra en una obra, falta en otra.</strong>
+            <br />
+            Creá tu cuenta para publicar y contactar vendedores.
           </p>
-          <ul className="login-hero__materiales">
-            <li>
-              <IconoLadrillo /> Ladrillos
-            </li>
-            <li>
-              <IconoCeramico /> Cerámicos
-            </li>
-            <li>
-              <IconoAbertura /> Aberturas
-            </li>
-            <li>
-              <IconoMadera /> Maderas
-            </li>
-            <li className="login-hero__mas">+ Más</li>
-
-          </ul>
         </div>
       </div>
 
@@ -74,8 +66,18 @@ function Login() {
           </div>
         </div>
         <div className="orden-trabajo">
-          <h2>Iniciar sesión</h2>
+          <h2>Crear cuenta</h2>
           <form onSubmit={manejarSubmit} autoComplete="off">
+            <div className="campo">
+              <label htmlFor="nombre">Nombre</label>
+              <input
+                id="nombre"
+                type="text"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                required
+              />
+            </div>
             <div className="campo">
               <label htmlFor="correo">Correo</label>
               <input
@@ -84,6 +86,16 @@ function Login() {
                 value={correo}
                 onChange={(e) => setCorreo(e.target.value)}
                 required
+              />
+            </div>
+            <div className="campo">
+              <label htmlFor="telefono">Teléfono (para que te contacten por WhatsApp)</label>
+              <input
+                id="telefono"
+                type="tel"
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
+                placeholder="Ej: 3425123456"
               />
             </div>
             <div className="campo">
@@ -96,18 +108,28 @@ function Login() {
                 required
               />
             </div>
+            <div className="campo">
+              <label htmlFor="confirmar">Confirmar contraseña</label>
+              <input
+                id="confirmar"
+                type="password"
+                value={confirmarPassword}
+                onChange={(e) => setConfirmarPassword(e.target.value)}
+                required
+              />
+            </div>
             {error && <p className="mensaje-error">{error}</p>}
             <button type="submit" disabled={cargando}>
-              {cargando ? "Ingresando..." : "Ingresar"}
+              {cargando ? "Creando cuenta..." : "Crear cuenta"}
             </button>
-            <p className="login-panel__link">
-              ¿No tenés cuenta? <Link to="/registro">Registrate</Link>
-            </p>
           </form>
+          <p className="login-panel__link">
+            ¿Ya tenés cuenta? <Link to="/login">Iniciar sesión</Link>
+          </p>
         </div>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default Registro;

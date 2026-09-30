@@ -1,12 +1,16 @@
+export { API_URL };
 const API_URL = "http://localhost:3000";
 
 async function apiFetch(endpoint, opciones = {}) {
   const token = localStorage.getItem("token");
 
   const headers = {
-    "Content-Type": "application/json",
     ...opciones.headers,
   };
+
+  if (!(opciones.body instanceof FormData)) {
+    headers["Content-Type"] = "application/json";
+  }
 
   if (token) {
     headers.Authorization = `Bearer ${token}`;

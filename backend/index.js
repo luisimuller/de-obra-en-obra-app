@@ -19,6 +19,7 @@ app.use("/usuarios",usuariosRouter);
 app.use("/categorias",categoriasRouter);
 app.use("/publicaciones",publicacionesRouter);
 app.use("/auth", authRouter);
+app.use("/uploads", express.static("uploads"));
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);

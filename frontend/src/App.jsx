@@ -3,6 +3,8 @@ import Login from "./pages/Login";
 import Publicaciones from "./pages/Publicaciones";
 import RutaPrivada from "./components/RutaPrivada";
 import NuevaPublicacion from "./pages/NuevaPublicacion";
+import DetallePublicacion from "./pages/DetallePublicacion";
+import Registro from "./pages/Registro";
 
 function App() {
   return (
@@ -26,6 +28,15 @@ function App() {
             </RutaPrivada>
           }
         />
+        <Route
+          path="/publicaciones/:id"
+          element={
+            <RutaPrivada>
+              <DetallePublicacion />
+            </RutaPrivada>
+          }
+        />
+        <Route path="/registro" element={<Registro />} />
       </Routes>
     </BrowserRouter>
   );

@@ -2,7 +2,18 @@ const express = require("express");
 const router = express.Router();
 const prisma = require("../prisma-client");
 const verificarToken = require("../middleware/auth");
+const multer = require("multer");
+const path = require("path");
 
+const almacenamiento = multer.diskStorage({
+  destination: "uploads/",
+  filename: (req, file, cb) => {
+    const nombreUnico = Date.now() + "-" + Math.round(Math.random() * 1e9) + path.extname(file.originalname);
+    cb(null, nombreUnico);
+  },
+});
+
+const upload = multer({ storage: almacenamiento });
 
 router.post("/", verificarToken, async (req, res) => {
   try {
@@ -49,6 +60,28 @@ router.post("/", verificarToken, async (req, res) => {
     res.status(500).json({ error: "Error al crear la publicación" });
   }
 });
+router.post("/:id/fotos", verificarToken, upload.array("fotos", 5), async (req, res) => {
+  try {
+    const publicacionId = Number(req.params.id);
+
+    const fotosCreadas = await Promise.all(
+      req.files.map((archivo, indice) =>
+        prisma.publicacionFoto.create({
+          data: {
+            publicacionId,
+            url: `/uploads/${archivo.filename}`,
+            orden: indice,
+          },
+        })
+      )
+    );
+
+    res.status(201).json(fotosCreadas);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al subir las fotos" });
+  }
+});
 
 router.get("/", async (req, res) => {
   try {
@@ -56,6 +89,7 @@ router.get("/", async (req, res) => {
       include: {
         vendedor: true,
         categoria: true,
+        fotos: true,
       },
     });
     res.json(publicaciones);

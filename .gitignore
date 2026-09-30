@@ -11,3 +11,5 @@ build/
 .devin/
 backend/generated/
 dev-dist/
+backend/uploads/*
+!backend/uploads/.gitkeep

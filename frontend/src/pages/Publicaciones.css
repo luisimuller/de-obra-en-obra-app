@@ -130,3 +130,25 @@
 .tablon__nuevo:hover {
   background: var(--color-acento-oscuro);
 }
+
+.aviso__foto {
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-right: 2px solid var(--color-borde);
+}
+
+.aviso__ver {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: var(--color-secundario);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--color-secundario);
+}
+
+.aviso__ver:hover {
+  color: var(--color-acento);
+  border-color: var(--color-acento);
+}

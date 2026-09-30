@@ -27,7 +27,7 @@ model Usuario {
 
 model Categoria {
   id               Int      @id @default(autoincrement())
-  nombre           String
+  nombre           String   @unique
   categoriaPadreId Int?
   categoriaPadre   Categoria?  @relation("Subcategorias", fields: [categoriaPadreId], references: [id])
   subcategorias    Categoria[] @relation("Subcategorias")

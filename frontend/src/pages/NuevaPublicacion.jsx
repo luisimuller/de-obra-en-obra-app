@@ -16,6 +16,7 @@ function NuevaPublicacion() {
     const [cargando, setCargando] = useState(false);
     const navigate = useNavigate();
     const [categoriaNueva, setCategoriaNueva] = useState("");
+    const [fotos, setFotos] = useState([]);
 
     useEffect(() => {
         async function cargarCategorias() {
@@ -65,7 +66,7 @@ function NuevaPublicacion() {
 
             const { latitud, longitud } = await geocodificarDireccion(direccion);
 
-            await apiFetch("/publicaciones", {
+            const nuevaPublicacion = await apiFetch("/publicaciones", {
                 method: "POST",
                 body: JSON.stringify({
                     categoriaId: categoriaIdFinal,
@@ -78,6 +79,16 @@ function NuevaPublicacion() {
                     longitud,
                 }),
             });
+
+            if (fotos.length > 0) {
+                const formData = new FormData();
+                fotos.forEach((archivo) => formData.append("fotos", archivo));
+
+                await apiFetch(`/publicaciones/${nuevaPublicacion.id}/fotos`, {
+                    method: "POST",
+                    body: formData,
+                });
+            }
 
             navigate("/publicaciones");
         } catch (err) {
@@ -191,6 +202,16 @@ function NuevaPublicacion() {
                             value={precio}
                             onChange={(e) => setPrecio(e.target.value)}
                             required
+                        />
+                    </div>
+                    <div className="campo">
+                        <label htmlFor="fotos">Fotos (hasta 5, opcional)</label>
+                        <input
+                            id="fotos"
+                            type="file"
+                            accept="image/*"
+                            multiple
+                            onChange={(e) => setFotos(Array.from(e.target.files).slice(0, 5))}
                         />
                     </div>
 

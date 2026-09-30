@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import apiFetch from "../services/api";
 import { iconoPorCategoria } from "../components/Iconos";
 import "./Publicaciones.css";
 import { useNavigate, Link } from "react-router-dom";
+import apiFetch from "../services/api";
 
 
 function Publicaciones() {
@@ -68,6 +68,9 @@ function Publicaciones() {
                 </span>
                 <span>Publica: {publicacion.vendedor.nombre}</span>
               </div>
+              <Link to={`/publicaciones/${publicacion.id}`} className="aviso__ver">
+                Ver publicación
+              </Link>
             </div>
           </li>
         ))}

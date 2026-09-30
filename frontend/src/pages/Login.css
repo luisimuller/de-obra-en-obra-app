@@ -263,3 +263,14 @@
         box-shadow: 6px 6px 0 var(--color-secundario);
     }
 }
+.login-panel__link {
+  text-align: center;
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--color-tinta-suave);
+}
+
+.login-panel__link a {
+  color: var(--color-secundario);
+  font-weight: 600;
+}
