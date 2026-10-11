@@ -5,6 +5,7 @@ import RutaPrivada from "./components/RutaPrivada";
 import NuevaPublicacion from "./pages/NuevaPublicacion";
 import DetallePublicacion from "./pages/DetallePublicacion";
 import Registro from "./pages/Registro";
+import Mapa from "./pages/Mapa";
 
 function App() {
   return (
@@ -33,6 +34,14 @@ function App() {
           element={
             <RutaPrivada>
               <DetallePublicacion />
+            </RutaPrivada>
+          }
+        />
+        <Route
+          path="/mapa"
+          element={
+            <RutaPrivada>
+              <Mapa />
             </RutaPrivada>
           }
         />

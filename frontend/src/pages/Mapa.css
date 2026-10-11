@@ -1,0 +1,30 @@
+.mapa-pantalla {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.mapa-pantalla__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 4px solid var(--color-tinta);
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.mapa-pantalla__header h1 {
+  font-size: 1.8rem;
+}
+
+.mapa-pantalla__volver {
+  color: var(--color-secundario);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--color-secundario);
+}
+
+.mapa-pantalla__mapa {
+  flex: 1;
+  width: 100%;
+}

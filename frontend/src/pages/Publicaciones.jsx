@@ -35,10 +35,12 @@ function Publicaciones() {
           <span className="tablon__eyebrow">N.° 02 — Tablón</span>
           <h1>Materiales disponibles</h1>
         </div>
-        <Link to="/publicaciones/nueva" className="tablon__nuevo">+ Publicar material</Link>
-        <button onClick={cerrarSesion}>Cerrar sesión</button>
+        <div className="tablon__acciones">
+          <Link to="/publicaciones/nueva" className="tablon__nuevo">+ Publicar</Link>
+          <Link to="/mapa" className="tablon__nuevo tablon__nuevo--secundario">Ver en mapa</Link>
+          <button onClick={cerrarSesion}>Cerrar sesión</button>
+        </div>
       </header>
-
       {error && <p className="mensaje-error">{error}</p>}
 
       {!error && publicaciones.length === 0 && (

@@ -6,12 +6,24 @@
 
 .tablon__header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
+  gap: 1.25rem;
   border-bottom: 4px solid var(--color-tinta);
   padding-bottom: 1.25rem;
   margin-bottom: 2rem;
-  gap: 1rem;
+}
+
+.tablon__acciones {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tablon__acciones .tablon__nuevo,
+.tablon__acciones button {
+  white-space: nowrap;
+  font-size: 0.9rem;
+  padding: 0.55rem 0.9rem;
 }
 
 .tablon__eyebrow {
@@ -151,4 +163,12 @@
 .aviso__ver:hover {
   color: var(--color-acento);
   border-color: var(--color-acento);
+}
+
+.tablon__nuevo--secundario {
+  background: var(--color-secundario);
+}
+
+.tablon__nuevo--secundario:hover {
+  background: #1F3348;
 }
